@@ -1,6 +1,7 @@
 import mostlyRainy from "../icon/mostlyRainy.svg";
 import sunny from "../icon/sunny.svg";
 import rainy from "../icon/rainy.svg";
+
 const dailyForecasts = [
   {
     weekDay: "Monday",
