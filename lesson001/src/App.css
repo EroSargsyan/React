@@ -1,0 +1,22 @@
+#container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30vh;
+}
+
+#box {
+  box-sizing: content-box;
+  padding: 2em;
+  border: 1px dashed grey;
+}
+
+#weekDay {
+  margin-bottom: 0.5em;
+  font-size: large;
+}
+
+#img {
+  margin-bottom: 0.5em;
+
+}
