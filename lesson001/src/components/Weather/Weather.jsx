@@ -1,7 +1,7 @@
 import React from "react";
 
-function Weather(props) {
-  return props.weatherPredictions.map((el) => (
+function Weather({weatherPredictions}) {
+  return weatherPredictions.map((el) => (
     <div id="box">
       <div id="weekDay"> {el.weekDay} </div>
       <div id="img">
