@@ -1,11 +1,9 @@
 import React from "react";
 
-export default class Reset extends React.Component {
-  render() {
-    return (
-      <div id="button">
-        <button>Reset</button>
-      </div>
-    );
-  }
+export default function Reset({ ...props }) {
+  return (
+    <div id="button">
+      <button {...props}>Reset</button>
+    </div>
+  );
 }

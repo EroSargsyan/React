@@ -1,11 +1,9 @@
 import React from "react";
 
-export default class Decrease extends React.Component {
-  render() {
-    return (
-      <div id="button">
-        <button>Decrease</button>
-      </div>
-    );
-  }
+export default function Decrease({ ...props }) {
+  return (
+    <div id="button">
+      <button {...props}>Decrease</button>
+    </div>
+  );
 }

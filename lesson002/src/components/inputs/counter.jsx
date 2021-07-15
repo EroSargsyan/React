@@ -1,5 +1,11 @@
 import React from "react";
-
+import Decrease from "../buttons/decreaseBtn";
+import Increase from "../buttons/increaseBtn";
+import Reset from "../buttons/resetBtn";
+import InputValue from "./inputValue";
+import MaxValue from "./maxValue";
+import MinValue from "./minValue";
+import StepValue from "./stepValue";
 export default class Counter extends React.Component {
   constructor(props) {
     super(props);
@@ -76,55 +82,26 @@ export default class Counter extends React.Component {
   render() {
     return (
       <div id="container">
-        <div id="input">
-          <label htmlFor="inputValue">Input Value</label>
-          <input
-            type="number"
-            id="inputValue"
-            value={this.state.inputValue}
-            onChange={this.changeInputValue}
-          />
-        </div>
-        <div id="input">
-          <label htmlFor="maxValue">Max Value</label>
-          <input
-            type="number"
-            value={this.state.maxValue}
-            id="maxValue"
-            onChange={this.changeMaxValue}
-          />
-        </div>
-        <div id="input">
-          <label htmlFor="minValue">Min Value</label>
-          <input
-            type="number"
-            id="minValue"
-            value={this.state.minValue}
-            onChange={this.changeMinValue}
-          />
-        </div>
-        <div id="input">
-          <label htmlFor="stepValue">Step Value</label>
-          <input
-            type="number"
-            id="stepValue"
-            value={this.state.stepValue}
-            onChange={this.changeStepValue}
-          />
-        </div>
+        <InputValue
+          value={this.state.inputValue}
+          onChange={this.changeInputValue}
+        />
+        <MaxValue value={this.state.maxValue} onChange={this.changeMaxValue} />
+        <MinValue value={this.state.minValue} onChange={this.changeMinValue} />
+        <StepValue
+          value={this.state.stepValue}
+          onChange={this.changeStepValue}
+        />
+
         <div id="result">
           <h1>{this.state.result}</h1>
         </div>
+
         {/* ..................buttons................... */}
-        <div id="button">
-          <button onClick={this.decrease}>Decrease</button>
-        </div>
-        <div id="button">
-          <button onClick={this.increase}>Increase</button>
-        </div>
-        <div id="button">
-          <button onClick={this.reset}>Reset</button>
-        </div>
+
+        <Decrease onClick={this.decrease} />
+        <Increase onClick={this.increase} />
+        <Reset onClick={this.reset} />
       </div>
     );
   }
