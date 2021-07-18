@@ -4,7 +4,7 @@ export default function Password({ onChange, value, result }) {
     <label htmlFor="password">
       Password:
       <input type="password" id="password" onChange={onChange} value={value} />
-      <h4>{result}</h4>
+      <h5>{result}</h5>
     </label>
   );
 }

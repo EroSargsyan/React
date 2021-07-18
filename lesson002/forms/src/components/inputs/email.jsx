@@ -4,7 +4,7 @@ export default function Email({ onChange, value, result }) {
     <label htmlFor="email">
       Email:
       <input type="email" id="email" onChange={onChange} value={value} />
-      <h4>{result}</h4>
+      <h5>{result}</h5>
     </label>
   );
 }
