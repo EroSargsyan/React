@@ -59,12 +59,25 @@ export default class Todo extends React.Component {
   completeItem = (el) => {
     this.setState((prevState) => ({
       items: prevState.items.map((item) => {
-        if (item.id === el.id && item.className === "") {
-          return { ...item, className: "lineThrough", isCompleted: true };
-        } else if (item.id === el.id && item.className !== "") {
-          return { ...item, className: "", isCompleted: false };
+        if (item.id === el.id) {
+          return { ...item, isCompleted: !item.isCompleted };
         }
+        return item;
+      }),
+    }));
+  };
 
+  changeValue = (id, text) => {
+    this.setState((prevState) => ({
+      items: prevState.items.map((item) => {
+        if (item.id === id) {
+          return {
+            id: Math.random(),
+            textValue: text,
+            isCompleted: false,
+            className: "",
+          };
+        }
         return item;
       }),
     }));
@@ -91,6 +104,7 @@ export default class Todo extends React.Component {
             items={this.state.items}
             deleteItem={this.deleteItem}
             completeItem={this.completeItem}
+            changeValue={this.changeValue}
           />
         </ul>
       </>

@@ -1,37 +1,23 @@
 import React from "react";
+import ListItem from "./listItem";
 import "./todo.css";
 
-export default function ImportLists({ items, deleteItem, completeItem }) {
+export default function ImportLists({
+  items,
+  deleteItem,
+  completeItem,
+  changeValue,
+}) {
   return (
     <div id="lists">
       {items.map((el) => (
-        <li key={el.id}>
-          <input
-            type="text"
-            value={el.textValue}
-            onChange={el.onChange}
-            id={el.id}
-            className={el.className}
-          />
-          <button
-            type="submit"
-            id="completeButton"
-            onClick={() => {
-              completeItem(el);
-            }}
-          >
-            Complete
-          </button>
-          <button
-            type="submit"
-            id="deleteButton"
-            onClick={() => {
-              deleteItem(el);
-            }}
-          >
-            Delete
-          </button>
-        </li>
+        <ListItem
+          key={el.id}
+          el={el}
+          deleteItem={deleteItem}
+          changeValue={changeValue}
+          completeItem={completeItem}
+        />
       ))}
     </div>
   );
