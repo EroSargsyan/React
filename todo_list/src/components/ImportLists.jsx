@@ -1,7 +1,7 @@
 import React from "react";
 import ListItem from "./listItem";
 import "./todo.css";
-
+import PropTypes from "prop-types";
 export default function ImportLists({
   items,
   deleteItem,
@@ -22,3 +22,10 @@ export default function ImportLists({
     </div>
   );
 }
+
+ImportLists.propTypes = {
+  items: PropTypes.array.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  changeValue: PropTypes.func.isRequired,
+  completeItem: PropTypes.func.isRequired,
+};

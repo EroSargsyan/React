@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./todo.css";
+import PropTypes from "prop-types";
 
 export default class ListItem extends Component {
   constructor(props) {
@@ -51,3 +52,10 @@ export default class ListItem extends Component {
     );
   }
 }
+
+ListItem.propTypes = {
+  el: PropTypes.object.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  changeValue: PropTypes.func.isRequired,
+  completeItem: PropTypes.func.isRequired,
+};

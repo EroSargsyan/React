@@ -87,6 +87,7 @@ export default class Todo extends React.Component {
               onChange={this.onChange}
               className="bg-gray-200  border-2 border-gray-200 rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
               value={this.state.inputValue}
+              placeholder="Enter task"
             />
             <input
               id="add"
