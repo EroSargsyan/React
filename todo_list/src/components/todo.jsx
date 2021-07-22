@@ -1,31 +1,13 @@
 import React from "react";
 import ImportLists from "./ImportLists";
+import { getStorage, setStorage } from "../helpers/localStorage";
 
 export default class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       inputValue: "",
-      items: [
-        {
-          id: Math.random(),
-          textValue: "Java Script",
-          isCompleted: false,
-          className: "",
-        },
-        {
-          id: Math.random(),
-          textValue: "Node JS",
-          isCompleted: false,
-          className: "",
-        },
-        {
-          id: Math.random(),
-          textValue: "React",
-          isCompleted: false,
-          className: "",
-        },
-      ],
+      items: !getStorage() ? [] : getStorage(),
     };
   }
 
@@ -36,19 +18,27 @@ export default class Todo extends React.Component {
   handlerAdd = (event) => {
     event.preventDefault();
     if (this.state.inputValue !== "") {
-      this.setState((prevState) => ({
-        items: [
-          ...prevState.items,
-          {
-            id: Math.random(),
-            textValue: this.state.inputValue,
-            isCompleted: false,
-            className: "",
-          },
-        ],
-      }));
+      this.setState((prevState) => {
+        return {
+          items: [
+            ...prevState.items,
+            {
+              id: Math.random(),
+              textValue: this.state.inputValue,
+              isCompleted: false,
+              className: "",
+            },
+          ],
+
+          inputValue: "",
+        };
+      });
     }
   };
+
+  componentDidUpdate() {
+    setStorage(this.state.items);
+  }
 
   deleteItem = (el) => {
     this.setState((prevState) => ({
@@ -72,7 +62,7 @@ export default class Todo extends React.Component {
       items: prevState.items.map((item) => {
         if (item.id === id) {
           return {
-            id: Math.random(),
+            id: item.id,
             textValue: text,
             isCompleted: false,
             className: "",
@@ -85,21 +75,30 @@ export default class Todo extends React.Component {
 
   render() {
     return (
-      <>
-        <div id="container">
-          <span id="todo">To Do</span>
+      <div id="container" className="flex justify-center flex-col">
+        <div id="inputContainer">
           <form>
-            <input id="input" type="text" onChange={this.onChange} />
+            <p id="todo" className="text-4xl text-center mb-8 mr-8  ">
+              To Do
+            </p>
+            <input
+              id="input"
+              type="text"
+              onChange={this.onChange}
+              className="bg-gray-200  border-2 border-gray-200 rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+              value={this.state.inputValue}
+            />
             <input
               id="add"
               type="submit"
               value="Add"
               onClick={this.handlerAdd}
+              className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ml-3"
             />
           </form>
         </div>
 
-        <ul id="cardContainer">
+        <ul id="cardContainer" className="my-3.5">
           <ImportLists
             items={this.state.items}
             deleteItem={this.deleteItem}
@@ -107,7 +106,7 @@ export default class Todo extends React.Component {
             changeValue={this.changeValue}
           />
         </ul>
-      </>
+      </div>
     );
   }
 }
