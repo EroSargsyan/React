@@ -10,26 +10,36 @@ import {
 // import LoginForm from "./loginForm";
 import auth from "./authenticate";
 
-export default function ProtectedRoute({ component: Component, ...rest }) {
-    return (
-      <Route
-        {...rest}
-        render={(props) => {
-          if (auth.isAuthenticated()) {
-            return <Component {...props} />;
-          } else {
-            return (
-              <Redirect
-                to={{
-                  pathname: "/login",
-                  state: {
-                    from: props.location,
-                  },
-                }}
-              />
-            );
-          }
-        }}
-      />
-    );
-  }
+export default function ProtectedRoute({
+  component: Component,
+  changeTitle,
+  changeContent,
+  path,
+}) {
+  return (
+    <Route
+      path={path}
+      render={(props) => {
+        if (auth.isAuthenticated()) {
+          return (
+            <Component
+              changeTitle={changeTitle}
+              changeContent={changeContent}
+            />
+          );
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+}
