@@ -1,30 +1,16 @@
 import React from "react";
-import Posts from "./posts";
+// import Posts from "./posts";
 import auth from "./authenticate";
-import { Route } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-export default class CreatePostPage extends React.Component {
-  // titleInput = (event) => {
-  //   this.setState((prevState) => {
-  //     return { ...prevState, titleValue: event.target.value };
-  //   });
-  // };
-  // contentInput = (event) => {
-  //   this.setState((prevState) => {
-  //     return { ...prevState, contentValue: event.target.value };
-  //   });
-  // };
-
-  // changeTitle = (event) => {
-  //   this.props.changeTitle(event.target.value);
-  // };
-  // changeContent = (event) => {
-  //   this.props.changeContent(event.target.value);
-  // };
-
-  // changeTitleContent = () => {
-  //   this.props.changeTitleContent(this.state.title, this.state.content);
-  // };
+class CreatePostPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      content: "",
+    };
+  }
 
   render() {
     return (
@@ -47,7 +33,7 @@ export default class CreatePostPage extends React.Component {
               name="title"
               // value={this.state.title}
               onChange={(event) => {
-                this.props.changeTitleContent(event.target.value);
+                this.setState((prev) => ({ title: event.target.value }));
               }}
             />
             <input
@@ -55,14 +41,18 @@ export default class CreatePostPage extends React.Component {
               name="content"
               // value={this.state.content}
               onChange={(event) => {
-                // this.props.changeTitleContent("", event.target.value);
+                this.setState((prev) => ({ content: event.target.value }));
               }}
             />
             <input
               type="button"
               value="Submit"
               onClick={() => {
-                // this.props.history.push("/props")
+                this.props.createPost({
+                  title: this.state.title,
+                  content: this.state.content,
+                });
+                this.props.history.push("/posts");
               }}
             />
           </div>
@@ -70,8 +60,9 @@ export default class CreatePostPage extends React.Component {
             <button
               onClick={() => {
                 auth.logout(() => {
-                  this.props.history.push("/");
+                  this.props.history.push("/posts");
                 });
+                window.localStorage.removeItem("login");
               }}
             >
               Sign Out
@@ -82,3 +73,5 @@ export default class CreatePostPage extends React.Component {
     );
   }
 }
+
+export default withRouter(CreatePostPage);

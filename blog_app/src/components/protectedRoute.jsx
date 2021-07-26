@@ -12,8 +12,7 @@ import auth from "./authenticate";
 
 export default function ProtectedRoute({
   component: Component,
-  changeTitle,
-  changeContent,
+  createPost,
   path,
 }) {
   return (
@@ -21,12 +20,7 @@ export default function ProtectedRoute({
       path={path}
       render={(props) => {
         if (auth.isAuthenticated()) {
-          return (
-            <Component
-              changeTitle={changeTitle}
-              changeContent={changeContent}
-            />
-          );
+          return <Component createPost={createPost} />;
         } else {
           return (
             <Redirect

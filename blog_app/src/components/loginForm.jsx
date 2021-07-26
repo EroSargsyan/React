@@ -18,6 +18,7 @@ export default class LoginForm extends React.Component {
       return { ...prevState, password: event.target.value };
     });
   };
+
   render() {
     return (
       <div
@@ -53,6 +54,7 @@ export default class LoginForm extends React.Component {
                 auth.login(() => {
                   this.props.history.push("/createpost");
                 });
+                window.localStorage.setItem("login", this.state.login);
               } else {
                 alert("Enter login/password");
               }

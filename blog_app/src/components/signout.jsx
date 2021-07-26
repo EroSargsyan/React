@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import auth from "./authenticate";
+// import auth from "./authenticate";
 import "./Styles.css";
 
-let signOut = "signOutHidden";
+let signOut = "signOutShow";
 export default class SignOut extends React.Component {
   render() {
-    true ? (signOut = "signOutShow") : (signOut = "signOutHidden");
+    // true ? (signOut = "signOutShow") : (signOut = "signOutHidden");
     return (
       <NavLink className={signOut} to="/">
         Sign Out
@@ -14,3 +14,4 @@ export default class SignOut extends React.Component {
     );
   }
 }
+  

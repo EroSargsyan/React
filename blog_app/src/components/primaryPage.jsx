@@ -5,13 +5,13 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import ProtectedRoute from "./protectedRoute";
-import createPostPage from "./createPostPage";
+// import ProtectedRoute from "./protectedRoute";
+// import createPostPage from "./createPostPage";
 import LoginForm from "./loginForm";
-import auth from "./authenticate";
+// import auth from "./authenticate";
 import Posts from "./posts";
 import CreatePostPage from "./createPostPage";
-// import SignOut from "./signout";
+import ProtectedRoute from "./protectedRoute";
 
 export default class PrimaryPage extends React.Component {
   constructor(props) {
@@ -19,25 +19,11 @@ export default class PrimaryPage extends React.Component {
     this.state = {
       titleValue: "",
       contentValue: "",
-      items: [
-        {
-          id: Math.random(),
-          date: new Date().toLocaleDateString(),
-
-          titleValue: "First Title Value",
-          contentValue: "First Content Value",
-        },
-        {
-          id: Math.random(),
-          date: new Date().toLocaleDateString(),
-          titleValue: "Second Title Value",
-          contentValue: "Second Content Value",
-        },
-      ],
+      items: [],
     };
   }
 
-  titleContent = (newTitle, newContent) => {
+  createPost = (val) => {
     this.setState((prevState) => {
       return {
         items: [
@@ -45,31 +31,19 @@ export default class PrimaryPage extends React.Component {
           {
             id: Math.random(),
             date: new Date().toLocaleDateString(),
-            titleValue: newTitle,
-            contentValue: newContent,
+            titleValue: val.title,
+            contentValue: val.content,
+            login: window.localStorage.getItem("login"),
           },
         ],
       };
     });
   };
 
-  // contentInput = (newContent) => {
-  //   this.setState({ contentValue: newContent });
-  // };
-
   render() {
     return (
-      <div>
-        {/* <CreatePostPage
-          changeTitle={this.titleInput}
-          changeContent={this.contentInput}
-        />
-        <Posts
-          title={this.state.titleValue}
-          content={this.state.contentValue}
-        /> */}
-
-        <Router>
+      <Router>
+        <div>
           <nav>
             <NavLink to="/posts">Posts</NavLink>
             <NavLink to="/createpost">Create Post</NavLink>
@@ -79,21 +53,24 @@ export default class PrimaryPage extends React.Component {
           <Switch>
             <Route exact path="/" />
             <Route path="/login" component={LoginForm} />
+
             <Route
               path="/posts"
               render={() => {
                 return <Posts items={this.state.items} />;
               }}
             />
+            {/* <Route exact path="/createpost">
+              <CreatePostPage createPost={this.createPost} />
+            </Route> */}
             <ProtectedRoute
               path="/createpost"
               component={CreatePostPage}
-              changeTitleContent={this.titleContent}
-              // changeContent={this.contentInput}
+              createPost={this.createPost}
             />
           </Switch>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
