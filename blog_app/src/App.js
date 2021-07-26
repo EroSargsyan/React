@@ -1,13 +1,14 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
-// import Posts from "./components/createPost";
 import PrimaryPage from "./components/primaryPage";
 
 function App() {
   return (
-    <div className="App">
-      <PrimaryPage />
-      {/* <Posts /> */}
-    </div>
+    <Router>
+      <div className="App">
+        <PrimaryPage />
+      </div>
+    </Router>
   );
 }
 

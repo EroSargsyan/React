@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 // import ProtectedRoute from "./protectedRoute";
 // import createPostPage from "./createPostPage";
 import LoginForm from "./loginForm";
@@ -12,6 +7,8 @@ import LoginForm from "./loginForm";
 import Posts from "./posts";
 import CreatePostPage from "./createPostPage";
 import ProtectedRoute from "./protectedRoute";
+import EachPost from "./eachPost";
+// import Comments from "./comments";
 
 export default class PrimaryPage extends React.Component {
   constructor(props) {
@@ -29,7 +26,7 @@ export default class PrimaryPage extends React.Component {
         items: [
           ...prevState.items,
           {
-            id: Math.random(),
+            id: Math.floor(Math.random() * 1000),
             date: new Date().toLocaleDateString(),
             titleValue: val.title,
             contentValue: val.content,
@@ -39,38 +36,42 @@ export default class PrimaryPage extends React.Component {
       };
     });
   };
-
+  deleteItem = (target) => {
+    this.setState((prevState) => ({
+      items: prevState.items.filter((el) => el.id != target),
+    }));
+  };
   render() {
     return (
-      <Router>
-        <div>
-          <nav>
-            <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/createpost">Create Post</NavLink>
-            <NavLink to="/login">Log in</NavLink>
-          </nav>
+      <div>
+        <nav>
+          <NavLink to="/posts">Posts</NavLink>
+          <NavLink to="/createpost">Create Post</NavLink>
+          <NavLink to="/login">Log in</NavLink>
+        </nav>
 
-          <Switch>
-            <Route exact path="/" />
-            <Route path="/login" component={LoginForm} />
+        <Switch>
+          <Route path="/login" component={LoginForm} />
 
-            <Route
-              path="/posts"
-              render={() => {
-                return <Posts items={this.state.items} />;
-              }}
-            />
-            {/* <Route exact path="/createpost">
-              <CreatePostPage createPost={this.createPost} />
-            </Route> */}
-            <ProtectedRoute
-              path="/createpost"
-              component={CreatePostPage}
-              createPost={this.createPost}
-            />
-          </Switch>
-        </div>
-      </Router>
+          <Route
+            exact
+            path="/posts"
+            render={() => {
+              return <Posts items={this.state.items} />;
+            }}
+          />
+
+          <ProtectedRoute
+            path="/createpost"
+            component={CreatePostPage}
+            createPost={this.createPost}
+          />
+          <Route exact path="/posts/:ide">
+            <EachPost items={this.state.items} deleteItem={this.deleteItem} />
+            {/* <Comments/> */}
+          </Route>
+        </Switch>
+      </div>
     );
   }
 }
