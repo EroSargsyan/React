@@ -14,4 +14,3 @@ export default class SignOut extends React.Component {
     );
   }
 }
-  

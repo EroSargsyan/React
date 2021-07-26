@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  //   BrowserRouter as Router,
-  //   Switch,
-  Route,
-  //   NavLink,
-  Redirect,
-} from "react-router-dom";
-// import createPostPage from "./createPostPage";
-// import LoginForm from "./loginForm";
+import { Route, Redirect } from "react-router-dom";
 import auth from "./authenticate";
 
 export default function ProtectedRoute({

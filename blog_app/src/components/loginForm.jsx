@@ -1,3 +1,4 @@
+import { Button, TextField } from "@material-ui/core";
 import React from "react";
 import auth from "./authenticate";
 export default class LoginForm extends React.Component {
@@ -28,27 +29,39 @@ export default class LoginForm extends React.Component {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
+          marginTop: "10em",
         }}
       >
         <div>
           <h2>Log in</h2>
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <input
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <TextField
             type="text"
             name="login"
             id="login"
             onChange={this.loginInput}
+            style={{ height: 25, marginTop: 20, width: "20em  " }}
+            placeholder="Login"
           />
-          <input
+          <TextField
             type="password"
             name="password"
             id="password"
             onChange={this.passwordInput}
+            style={{ height: 25, marginTop: 20, width: "20em  " }}
+            placeholder="Password"
           />
-          <input
+          <Button
+            variant="contained"
+            color="primary"
             type="button"
-            value="Log In"
+            style={{ height: 35, marginTop: 20 }}
             onClick={() => {
               if (this.state.login !== "" && this.state.password !== "") {
                 auth.login(() => {
@@ -59,7 +72,9 @@ export default class LoginForm extends React.Component {
                 alert("Enter login/password");
               }
             }}
-          />
+          >
+            Log in
+          </Button>
         </div>
       </div>
     );

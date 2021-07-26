@@ -2,6 +2,7 @@ import React from "react";
 // import Posts from "./posts";
 import auth from "./authenticate";
 import { withRouter } from "react-router-dom";
+import { Button, TextField } from "@material-ui/core";
 
 class CreatePostPage extends React.Component {
   constructor(props) {
@@ -22,31 +23,40 @@ class CreatePostPage extends React.Component {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
+            marginTop: "10em",
           }}
         >
           <div>
             <h2>Tell us your story</h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <input
+            <TextField
               type="text"
               name="title"
+              placeholder="*Title"
               // value={this.state.title}
               onChange={(event) => {
                 this.setState((prev) => ({ title: event.target.value }));
               }}
+              style={{ height: 25, marginTop: 20 }}
             />
-            <input
-              type="textarea"
+            <TextField
+              placeholder="*Content"
+              multiline
+              rows={4}
               name="content"
               // value={this.state.content}
               onChange={(event) => {
                 this.setState((prev) => ({ content: event.target.value }));
               }}
+              style={{ height: 25, marginTop: 20, width: "30em" }}
             />
-            <input
+
+            <Button
+              variant="contained"
+              color="primary"
               type="button"
-              value="Submit"
+              style={{ height: 35, marginTop: "7em" }}
               onClick={() => {
                 this.props.createPost({
                   title: this.state.title,
@@ -54,10 +64,16 @@ class CreatePostPage extends React.Component {
                 });
                 this.props.history.push("/posts");
               }}
-            />
+            >
+              Create Post
+            </Button>
           </div>
           <div>
-            <button
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              style={{ height: 35, marginTop: 20 }}
               onClick={() => {
                 auth.logout(() => {
                   this.props.history.push("/posts");
@@ -66,7 +82,7 @@ class CreatePostPage extends React.Component {
               }}
             >
               Sign Out
-            </button>
+            </Button>
           </div>
         </div>
       </>

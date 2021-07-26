@@ -1,0 +1,5 @@
+
+function SaveLocalStorage() {
+
+ localStorage.setItem()
+}
