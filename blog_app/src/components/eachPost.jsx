@@ -8,6 +8,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory, useParams } from "react-router-dom";
 import { TextField } from "@material-ui/core";
+import {
+  GetLSItemContent,
+  GetLSItemTitle,
+  SetLSItemContent,
+  SetLSItemTitle,
+} from "../helpers/localStorage";
 
 const useStyles = makeStyles({
   root: {
@@ -20,8 +26,12 @@ const useStyles = makeStyles({
 
 export default function EachPost({ items, deleteItem, editItem }) {
   let [isEditing, setIsEditing] = useState(false);
-  let [newTitle, setNewTitle] = useState("");
-  let [newContent, setNewContent] = useState("");
+  let [newTitle, setNewTitle] = useState(
+    GetLSItemTitle() === null ? "" : GetLSItemTitle()
+  );
+  let [newContent, setNewContent] = useState(
+    GetLSItemContent() === null ? "" : GetLSItemContent()
+  );
   let { ide } = useParams();
   const data = items.filter((item) => Number(ide) === item.id);
   const { date, login, titleValue, contentValue } = data[0];
@@ -106,6 +116,8 @@ export default function EachPost({ items, deleteItem, editItem }) {
             if (loginLocal === login) {
               editItem(ide, newTitle, newContent);
               setIsEditing((isEditing = !isEditing));
+              SetLSItemContent(newTitle);
+              SetLSItemTitle(newContent);
             }
           }}
         >

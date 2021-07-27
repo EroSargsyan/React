@@ -1,9 +1,6 @@
 import React from "react";
-// import Posts from "./posts";
-import auth from "./authenticate";
 import { withRouter } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
-import SignOutBtn from "./signOutBtn";
 
 class CreatePostPage extends React.Component {
   constructor(props) {
@@ -35,7 +32,6 @@ class CreatePostPage extends React.Component {
               type="text"
               name="title"
               placeholder="*Title"
-              // value={this.state.title}
               onChange={(event) => {
                 this.setState((prev) => ({ title: event.target.value }));
               }}
@@ -46,7 +42,6 @@ class CreatePostPage extends React.Component {
               multiline
               rows={4}
               name="content"
-              // value={this.state.content}
               onChange={(event) => {
                 this.setState((prev) => ({ content: event.target.value }));
               }}
@@ -68,20 +63,6 @@ class CreatePostPage extends React.Component {
             >
               Create Post
             </Button>
-          </div>
-          <div>
-            <SignOutBtn
-              variant="contained"
-              style={{ height: 35, marginTop: 20 }}
-              onClick={() => {
-                auth.logout(() => {
-                  this.props.history.push("/posts");
-                });
-                window.localStorage.removeItem("login");
-              }}
-            >
-              Sign Out
-            </SignOutBtn>
           </div>
         </div>
       </>

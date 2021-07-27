@@ -1,7 +1,5 @@
 import React from "react";
-import auth from "./authenticate";
 import { Button } from "@material-ui/core";
-import { styled } from "@material-ui/styles";
 
 export default function SignOutBtn({ variant, onClick, style }) {
   return (
@@ -10,7 +8,7 @@ export default function SignOutBtn({ variant, onClick, style }) {
         variant={variant}
         color="primary"
         type="button"
-        style={style}
+        // style={style}
         onClick={() => {
           onClick();
         }}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, NavLink, Link } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import LoginForm from "./loginForm";
 import Posts from "./posts";
 import CreatePostPage from "./createPostPage";
@@ -12,17 +12,19 @@ import "./Styles.css";
 import auth from "./authenticate";
 import SignOutBtn from "./signOutBtn";
 import { withRouter } from "react-router";
+import {
 
-// import Comments from "./comments";
-// import createPostPage from "./createPostPage";
-// import ProtectedRoute from "./protectedRoute";
+  GetLocStorageData,
+  SetLSItemTitle,
+  SetLocStorageData,
+} from "../helpers/localStorage";
 class PrimaryPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       titleValue: "",
       contentValue: "",
-      items: [],
+      items: GetLocStorageData() === null ? [] : GetLocStorageData(),
     };
   }
 
@@ -64,7 +66,9 @@ class PrimaryPage extends React.Component {
       contentValue: data.newContent,
     });
   };
-
+  componentDidUpdate() {
+    SetLocStorageData(this.state.items);
+  }
   render() {
     return (
       <div>
@@ -114,10 +118,9 @@ class PrimaryPage extends React.Component {
                 <NavLink to="/login" style={{ textDecoration: "none" }}>
                   <SignOutBtn
                     variant="contained"
-                    // style={{ height: 35, marginTop: 20 }}
                     onClick={() => {
                       auth.logout(() => {
-                        this.props.history.push("/posts");
+                        this.props.history.push("/login");
                       });
                       window.localStorage.removeItem("login");
                     }}
@@ -153,9 +156,8 @@ class PrimaryPage extends React.Component {
               deleteItem={this.deleteItem}
               editItem={this.editItem}
             />
-            {/* <Comments/> */}
           </Route>
-          <Route>
+          <Route path="/*">
             <ErrorPage />
           </Route>
         </Switch>
