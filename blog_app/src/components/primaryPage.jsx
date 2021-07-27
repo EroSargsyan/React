@@ -9,12 +9,14 @@ import Button from "@material-ui/core/Button";
 import { AppBar, Toolbar } from "@material-ui/core";
 import ErrorPage from "./errorPage";
 import "./Styles.css";
+import auth from "./authenticate";
+import SignOutBtn from "./signOutBtn";
+import { withRouter } from "react-router";
+
 // import Comments from "./comments";
 // import createPostPage from "./createPostPage";
-// import auth from "./authenticate";
 // import ProtectedRoute from "./protectedRoute";
-
-export default class PrimaryPage extends React.Component {
+class PrimaryPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,7 +66,6 @@ export default class PrimaryPage extends React.Component {
   };
 
   render() {
-    console.log(this.state.items);
     return (
       <div>
         <AppBar
@@ -75,34 +76,56 @@ export default class PrimaryPage extends React.Component {
         >
           <Toolbar id="buttonContainer">
             <div id="buttonDiv">
-              <NavLink to="/posts" style={{ textDecoration: "none" }}>
+              <NavLink
+                to="/posts"
+                style={{
+                  textDecoration: "none",
+                }}
+              >
                 <Button variant="contained" color="secondary">
                   Posts
                 </Button>
               </NavLink>
-
               <NavLink to="/createpost" style={{ textDecoration: "none" }}>
-                {" "}
                 <Button
                   variant="contained"
                   color="secondary"
-                  style={{ left: "3em" }}
+                  style={{
+                    marginLeft: "2em",
+                  }}
                 >
                   Create Post
                 </Button>
               </NavLink>
-
-              <NavLink to="/login" style={{ textDecoration: "none" }}>
-                
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  id="login"
-                  style={{ left: "85em" }}
-                >
-                  Log in
-                </Button>
-              </NavLink>
+              {!auth.isAuthenticated() ? (
+                <NavLink to="/login" style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    id="login"
+                    style={{
+                      marginLeft: "2em",
+                    }}
+                  >
+                    Log in
+                  </Button>
+                </NavLink>
+              ) : (
+                <NavLink to="/login" style={{ textDecoration: "none" }}>
+                  <SignOutBtn
+                    variant="contained"
+                    // style={{ height: 35, marginTop: 20 }}
+                    onClick={() => {
+                      auth.logout(() => {
+                        this.props.history.push("/posts");
+                      });
+                      window.localStorage.removeItem("login");
+                    }}
+                  >
+                    Sign Out
+                  </SignOutBtn>
+                </NavLink>
+              )}
             </div>
           </Toolbar>
         </AppBar>
@@ -140,3 +163,5 @@ export default class PrimaryPage extends React.Component {
     );
   }
 }
+
+export default withRouter(PrimaryPage);

@@ -3,6 +3,7 @@ import React from "react";
 import auth from "./authenticate";
 import { withRouter } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
+import SignOutBtn from "./signOutBtn";
 
 class CreatePostPage extends React.Component {
   constructor(props) {
@@ -69,10 +70,8 @@ class CreatePostPage extends React.Component {
             </Button>
           </div>
           <div>
-            <Button
+            <SignOutBtn
               variant="contained"
-              color="primary"
-              type="button"
               style={{ height: 35, marginTop: 20 }}
               onClick={() => {
                 auth.logout(() => {
@@ -82,7 +81,7 @@ class CreatePostPage extends React.Component {
               }}
             >
               Sign Out
-            </Button>
+            </SignOutBtn>
           </div>
         </div>
       </>

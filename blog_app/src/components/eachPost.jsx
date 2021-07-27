@@ -19,13 +19,15 @@ const useStyles = makeStyles({
 });
 
 export default function EachPost({ items, deleteItem, editItem }) {
-  let [isEditing, setIsEditing] = useState(true);
+  let [isEditing, setIsEditing] = useState(false);
   let [newTitle, setNewTitle] = useState("");
   let [newContent, setNewContent] = useState("");
   let { ide } = useParams();
   const data = items.filter((item) => Number(ide) === item.id);
+  const { date, login, titleValue, contentValue } = data[0];
   const history = useHistory();
   const classes = useStyles();
+  let loginLocal = window.localStorage.getItem("login");
 
   return (
     <Card
@@ -39,15 +41,15 @@ export default function EachPost({ items, deleteItem, editItem }) {
             color="textSecondary"
             gutterBottom
           >
-            {data[0].date} by: {data[0].login}
+            {date} by: {login}
           </Typography>
           {!isEditing ? (
             <>
               <Typography gutterBottom variant="h5" component="h2">
-                {data[0].titleValue}
+                {titleValue}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {data[0].contentValue}
+                {contentValue}
               </Typography>
             </>
           ) : (
@@ -56,7 +58,6 @@ export default function EachPost({ items, deleteItem, editItem }) {
                 type="text"
                 name="title"
                 placeholder="*Title"
-                // value={this.state.title}
                 onChange={(event) => {
                   setNewTitle(event.target.value);
                 }}
@@ -66,7 +67,6 @@ export default function EachPost({ items, deleteItem, editItem }) {
                 multiline
                 rows={4}
                 name="content"
-                // value={this.state.content}
                 onChange={(event) => {
                   setNewContent(event.target.value);
                 }}
@@ -80,7 +80,7 @@ export default function EachPost({ items, deleteItem, editItem }) {
           size="small"
           color="primary"
           onClick={() => {
-            if (window.localStorage.getItem("login") === data[0].login) {
+            if (loginLocal === login) {
               history.push("/posts");
               deleteItem(ide);
             }
@@ -92,8 +92,7 @@ export default function EachPost({ items, deleteItem, editItem }) {
           size="small"
           color="primary"
           onClick={() => {
-            if (window.localStorage.getItem("login") === data[0].login) {
-              // editItem(ide, data[0]);
+            if (loginLocal === login) {
               setIsEditing((isEditing = !isEditing));
             }
           }}
@@ -104,8 +103,7 @@ export default function EachPost({ items, deleteItem, editItem }) {
           size="small"
           color="primary"
           onClick={() => {
-            if (window.localStorage.getItem("login") === data[0].login) {
-              console.log(newTitle, newContent);
+            if (loginLocal === login) {
               editItem(ide, newTitle, newContent);
               setIsEditing((isEditing = !isEditing));
             }
