@@ -1,6 +1,13 @@
-.signOutHidden{
+.signOutHidden {
   display: none;
 }
-.signOutShow{
+.signOutShow {
   display: inline;
+}
+#buttonContainer {
+  /* display: flex; */
+  /* justify-content: space-around; */
+}
+#buttonDiv {
+  
 }

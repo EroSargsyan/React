@@ -45,13 +45,15 @@ export default function Posts({ items }) {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button
-              size="small"
-              color="primary"
-              style={{ marginLeft: "40em", marginBottom: "2em" }}
-            >
-              <Link to={`/posts/${el.id}`}>Learn More</Link>
-            </Button>
+            <Link to={`/posts/${el.id}`}>
+              <Button
+                size="small"
+                color="primary"
+                style={{ marginLeft: "40em", marginBottom: "2em" }}
+              >
+                Learn More
+              </Button>
+            </Link>
           </CardActions>
         </Card>
         <br />
