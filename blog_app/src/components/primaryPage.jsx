@@ -8,8 +8,7 @@ import EachPost from "./eachPost";
 import Button from "@material-ui/core/Button";
 import { AppBar, Toolbar } from "@material-ui/core";
 import ErrorPage from "./errorPage";
-import "./Styles.css";
-import auth from "./authenticate";
+import auth from "../helpers/authenticate";
 import SignOutBtn from "./signOutBtn";
 import { withRouter } from "react-router";
 import { GetLocStorageData, SetLocStorageData } from "../helpers/localStorage";
@@ -21,6 +20,7 @@ class PrimaryPage extends React.Component {
       contentValue: "",
       items: GetLocStorageData() === null ? [] : GetLocStorageData(),
     };
+    //
   }
 
   createPost = (val) => {
@@ -39,11 +39,13 @@ class PrimaryPage extends React.Component {
       };
     });
   };
+
   deleteItem = (target) => {
     this.setState((prevState) => ({
-      items: prevState.items.filter((el) => el.id !== target),
+      items: prevState.items.filter((el) => el.id !== Number(target)),
     }));
   };
+
   editItem = (target, newTitle, newContent) => {
     const data = this.state.items.map((el) => {
       return el.id === Number(target)
@@ -61,9 +63,11 @@ class PrimaryPage extends React.Component {
       contentValue: data.newContent,
     });
   };
+
   componentDidUpdate() {
     SetLocStorageData(this.state.items);
   }
+
   render() {
     return (
       <div>

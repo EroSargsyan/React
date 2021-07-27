@@ -1,6 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
 import React from "react";
-import auth from "./authenticate";
+import auth from "../helpers/authenticate";
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -9,11 +9,13 @@ export default class LoginForm extends React.Component {
       password: "",
     };
   }
+
   loginInput = (event) => {
     this.setState((prevState) => {
       return { ...prevState, login: event.target.value };
     });
   };
+
   passwordInput = (event) => {
     this.setState((prevState) => {
       return { ...prevState, password: event.target.value };
