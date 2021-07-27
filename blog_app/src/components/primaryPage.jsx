@@ -12,12 +12,7 @@ import "./Styles.css";
 import auth from "./authenticate";
 import SignOutBtn from "./signOutBtn";
 import { withRouter } from "react-router";
-import {
-
-  GetLocStorageData,
-  SetLSItemTitle,
-  SetLocStorageData,
-} from "../helpers/localStorage";
+import { GetLocStorageData, SetLocStorageData } from "../helpers/localStorage";
 class PrimaryPage extends React.Component {
   constructor(props) {
     super(props);

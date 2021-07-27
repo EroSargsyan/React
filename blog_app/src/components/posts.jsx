@@ -21,7 +21,10 @@ export default function Posts({ items }) {
   const classes = useStyles();
   return items.map((el) => {
     return (
-      <div style={{ marginTop: "7em", maxWidth: "50em", marginLeft: "25em" }}>
+      <div
+        style={{ marginTop: "7em", maxWidth: "50em", marginLeft: "25em" }}
+        key={Math.floor(Math.random() * 10)}
+      >
         <Card
           className={classes.root}
           style={{ marginTop: "5em", maxWidth: "80em" }}
