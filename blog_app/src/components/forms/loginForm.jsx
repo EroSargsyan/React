@@ -1,6 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
 import React from "react";
-import auth from "../helpers/authenticate";
+import auth from "../../services/authenticate";
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);

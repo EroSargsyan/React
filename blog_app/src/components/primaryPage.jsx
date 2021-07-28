@@ -1,17 +1,17 @@
 import React from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
-import LoginForm from "./loginForm";
+import LoginForm from "./forms/loginForm";
 import Posts from "./posts";
 import CreatePostPage from "./createPostPage";
-import ProtectedRoute from "./protectedRoute";
+import ProtectedRoute from "./routing/protectedRoute";
 import EachPost from "./eachPost";
 import Button from "@material-ui/core/Button";
 import { AppBar, Toolbar } from "@material-ui/core";
 import ErrorPage from "./errorPage";
-import auth from "../helpers/authenticate";
+import auth from "../services/authenticate";
 import SignOutBtn from "./signOutBtn";
 import { withRouter } from "react-router";
-import { GetLocStorageData, SetLocStorageData } from "../helpers/localStorage";
+import { GetLocStorageData, SetLocStorageData } from "../services/localStorage";
 class PrimaryPage extends React.Component {
   constructor(props) {
     super(props);

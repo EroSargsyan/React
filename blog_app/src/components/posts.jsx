@@ -23,7 +23,7 @@ export default function Posts({ items }) {
     return (
       <div
         style={{ marginTop: "7em", maxWidth: "50em", marginLeft: "25em" }}
-        key={Math.ceil(Math.random() * 10)}
+        key={Math.ceil(Math.random() * 10000)}
       >
         <Card
           className={classes.root}
