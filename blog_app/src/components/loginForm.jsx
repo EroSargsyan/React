@@ -70,6 +70,7 @@ export default class LoginForm extends React.Component {
                   this.props.history.push("/createpost");
                 });
                 window.localStorage.setItem("login", this.state.login);
+                window.localStorage.setItem("authentificate", true);
               } else {
                 alert("Enter login/password");
               }

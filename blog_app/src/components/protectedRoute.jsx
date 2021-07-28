@@ -1,17 +1,19 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import auth from "../helpers/authenticate";
+
 
 export default function ProtectedRoute({
   component: Component,
   createPost,
   path,
 }) {
+  const isAuth = window.localStorage.getItem("authentificate");
+
   return (
     <Route
       path={path}
       render={(props) => {
-        if (auth.isAuthenticated()) {
+        if (isAuth) {
           return <Component createPost={createPost} />;
         } else {
           return (

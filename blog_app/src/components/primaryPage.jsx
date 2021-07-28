@@ -69,6 +69,8 @@ class PrimaryPage extends React.Component {
   }
 
   render() {
+    const isAuth = window.localStorage.getItem("authentificate");
+
     return (
       <div>
         <AppBar
@@ -100,7 +102,7 @@ class PrimaryPage extends React.Component {
                   Create Post
                 </Button>
               </NavLink>
-              {!auth.isAuthenticated() ? (
+              {!isAuth ? (
                 <NavLink to="/login" style={{ textDecoration: "none" }}>
                   <Button
                     variant="contained"
@@ -122,6 +124,7 @@ class PrimaryPage extends React.Component {
                         this.props.history.push("/login");
                       });
                       window.localStorage.removeItem("login");
+                      window.localStorage.removeItem("authentificate");
                     }}
                   >
                     Sign Out
