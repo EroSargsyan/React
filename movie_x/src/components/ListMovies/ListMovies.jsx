@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import genres from "../GenresAPI/genres";
 
 export default function ListMovies({ items, baseImgUrl }) {
@@ -63,10 +64,14 @@ export default function ListMovies({ items, baseImgUrl }) {
                 />
               </svg>
             </button>
+            <Link to={`/movies/${el.id}`}>
+              <button className="p-0 w-16 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none text-white ml-5">
+                Details
+              </button>
+            </Link>
           </div>
         );
       })}
-      ;
     </div>
   );
 }

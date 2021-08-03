@@ -59,7 +59,7 @@ export default function LoginForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             {formik.touched.username && formik.errors.username ? (
-              <div>{formik.errors.username}</div>
+              <div className="text-red-600">{formik.errors.username}</div>
             ) : null}
           </div>
           <div className="mb-6">
@@ -79,7 +79,7 @@ export default function LoginForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             />
             {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
+              <div className="text-red-600">{formik.errors.password}</div>
             ) : null}
           </div>
           <div className="flex items-center justify-center ">

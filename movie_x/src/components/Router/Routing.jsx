@@ -1,4 +1,6 @@
 import { Route, Switch } from "react-router-dom";
+import Details from "../Details/Details";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import LoginForm from "../LoginForm/LoginForm";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -11,6 +13,12 @@ export default function Routing() {
       <Route exact path="/movies">
         <ProtectedRoute />
       </Route>
+      <Route exact path="/movies/:ID">
+        <Details />
+      </Route>
+      {/* <Route exact path="*">
+        <ErrorPage />
+      </Route> */}
     </Switch>
   );
 }
