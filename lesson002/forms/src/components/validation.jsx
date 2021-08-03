@@ -8,11 +8,6 @@ export default class Validation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      regexEmail:
-        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,
-      regexLogin: /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/,
-      regexPass:
-        /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
       loginValue: window.localStorage.getItem("setLoginValue")
         ? window.localStorage.getItem("setLoginValue")
         : "",
@@ -29,12 +24,20 @@ export default class Validation extends React.Component {
     };
   }
 
+  regexEmail =
+    /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+
+  regexLogin = /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;
+
+  regexPass =
+    /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
+
   loginHandler = (event) => {
     this.setState({
       loginValue: event.target.value,
       isDisabled: this.DisableButton(),
     });
-    if (this.state.regexLogin.test(event.target.value)) {
+    if (this.regexLogin.test(event.target.value)) {
       this.setState({
         loginResult: "",
         isDisabled: false,
@@ -51,7 +54,7 @@ export default class Validation extends React.Component {
       passwordValue: event.target.value,
       isDisabled: this.DisableButton(),
     });
-    if (this.state.regexPass.test(event.target.value)) {
+    if (this.regexPass.test(event.target.value)) {
       this.setState({ passResult: "", isDisabled: false });
     } else {
       this.setState({
@@ -65,7 +68,7 @@ export default class Validation extends React.Component {
       emailValue: event.target.value,
       isDisabled: this.DisableButton(),
     });
-    if (this.state.regexEmail.test(event.target.value)) {
+    if (this.regexEmail.test(event.target.value)) {
       this.setState({ emailResult: "", isDisabled: false });
     } else {
       this.setState({ emailResult: "Invalid email input", isDisabled: true });
