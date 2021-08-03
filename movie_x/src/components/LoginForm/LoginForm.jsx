@@ -1,9 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
-
+import { useHistory } from "react-router";
 import * as Yup from "yup";
 
 export default function LoginForm() {
+  let history = useHistory();
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -27,7 +28,8 @@ export default function LoginForm() {
     }),
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      window.localStorage.setItem("auth", JSON.stringify(formik.values));
+      history.push("/movies");
     },
   });
   return (

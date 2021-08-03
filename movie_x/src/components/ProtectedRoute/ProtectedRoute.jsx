@@ -6,7 +6,7 @@ export default function ProtectedRoute() {
   return (
     <Route
       render={(props) =>
-        this.props.isAuth ? (
+        localStorage.getItem("auth") ? (
           <Primary {...props} />
         ) : (
           <Redirect
