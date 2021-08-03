@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../NavBar/Navbar";
 import axios from "axios";
 import ListMovies from "../ListMovies/ListMovies";
-import { Route } from "react-router-dom";
-import Routing from "../Router/Routing";
 
 export default function Primary() {
   let [items, setItems] = useState([]);
@@ -68,7 +66,6 @@ export default function Primary() {
       <div>
         <Navbar setQuery={setQuery} />
         <ListMovies items={items} baseImgUrl={baseImgUrl} />
-        
       </div>
     </>
   );

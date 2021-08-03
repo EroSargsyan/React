@@ -16,9 +16,9 @@ export default function Routing() {
       <Route exact path="/movies/:ID">
         <Details />
       </Route>
-      {/* <Route exact path="*">
+      <Route exact path="*">
         <ErrorPage />
-      </Route> */}
+      </Route>
     </Switch>
   );
 }
