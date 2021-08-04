@@ -5,9 +5,9 @@ export default function Navbar({ setQuery }) {
   let history = useHistory();
   return (
     <div className=" flex justify-around items-center  p-1  bg-white shadow-xs w-full ">
-      <div className=" text-lg text-gray-700 hidden md:flex ">
+      {/* <div className=" text-lg text-gray-700 hidden md:flex ">
         <span>Movie X</span>
-      </div>
+      </div> */}
 
       <div className=" border-gray-800 rounded-lg px-3 py-2 text-gray-400 cursor-pointer hover:bg-gray-800 hover:text-gray-200">
         <div>

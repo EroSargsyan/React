@@ -28,8 +28,17 @@ export default function LoginForm() {
     }),
 
     onSubmit: (values) => {
-      window.localStorage.setItem("auth", JSON.stringify(formik.values));
-      history.push("/movies");
+      if (localStorage.getItem(`${formik.values.username}`) === null) {
+        localStorage.setItem("auth", formik.values.username);
+        localStorage.setItem(formik.values.username, formik.values.password);
+        history.push("/movies");
+      } else if (
+        localStorage.getItem(`${formik.values.username}`).split(",")[0] ===
+        formik.values.password
+      ) {
+        localStorage.setItem("auth", formik.values.username);
+        history.push("/movies");
+      }
     },
   });
   return (

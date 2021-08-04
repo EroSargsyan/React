@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import genres from "../GenresAPI/genres";
 
-export default function ListMovies({ items, baseImgUrl }) {
+export default function ListMovies({
+  items,
+  baseImgUrl,
+  setFavorites,
+  favorites,
+}) {
   return (
     <div className="p-10 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-5">
       {items.map((el) => {
@@ -29,7 +34,17 @@ export default function ListMovies({ items, baseImgUrl }) {
                 ) : null;
               })}
             </div>
-            <button className="p-0 w-12 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+            <button
+              className="p-0 w-12 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+              onClick={() => {
+                if (favorites.includes(el.id)) {
+                  let filtered = [favorites.filter((item) => item !== el.id)];
+                  setFavorites(filtered);
+                } else {
+                  setFavorites((prevState) => [...prevState, el.id]);
+                }
+              }}
+            >
               <svg
                 viewBox="0 0 20 20"
                 enableBackground="new 0 0 20 20"
