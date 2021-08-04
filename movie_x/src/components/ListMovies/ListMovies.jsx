@@ -20,37 +20,16 @@ export default function ListMovies({ items, baseImgUrl }) {
             </div>
             <div className="px-6 pt-4 pb-2">
               {genres.map((gen) => {
-                if (gen.id === el.genre_ids[0])
-                  return (
+                return el.genre_ids.includes(gen.id) ? (
+                  <div key={gen.id}>
                     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                       {gen.name}
                     </span>
-                  );
-                else if (gen.id === el.genre_ids[1])
-                  return (
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                      {gen.name}
-                    </span>
-                  );
-                else if (gen.id === el.genre_ids[2])
-                  return (
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                      {gen.name}
-                    </span>
-                  );
-                else if (gen.id === el.genre_ids[3])
-                  return (
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                      {gen.name}
-                    </span>
-                  );
-                return <div></div>;
+                  </div>
+                ) : null;
               })}
             </div>
-            <button
-              className="p-0 w-12 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-              // onClick={() => {}}
-            >
+            <button className="p-0 w-12 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
               <svg
                 viewBox="0 0 20 20"
                 enableBackground="new 0 0 20 20"
