@@ -19,7 +19,7 @@ export default function Details() {
       .catch((err) => {
         console.warn(err);
       });
-  }, []);
+  }, [ID]);
 
   return !movie ? null : (
     <div className="pt-16 min-w-screen min-h-screen bg-white flex items-center p-5 lg:p-10 overflow-hidden relative">
@@ -44,10 +44,10 @@ export default function Details() {
               <span className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-md px-10 py-2 font-semibold">
                 Released: {movie.release_date}
               </span>
-              <button class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded ml-4 ">
+              <button className="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded ml-4 ">
                 <span>{movie.original_language}</span>
               </button>
-              <button class="bg-blue-300 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded mt-2">
+              <button className="bg-blue-300 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded mt-2">
                 <span>Rating {movie.vote_average}</span>
               </button>
               <div className=" absolute top-10 bottom-10 left-10 right-10 z-0"></div>

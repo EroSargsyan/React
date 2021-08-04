@@ -76,6 +76,7 @@ export default function LoginForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
+              autoComplete=""
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             />
             {formik.touched.password && formik.errors.password ? (

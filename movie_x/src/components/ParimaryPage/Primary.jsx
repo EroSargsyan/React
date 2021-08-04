@@ -54,7 +54,9 @@ export default function Primary() {
         })
         .finally(setLoading(false));
     }
-  }, [loading]);
+
+    
+  }, [loading,query,pageNumber,items]);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
