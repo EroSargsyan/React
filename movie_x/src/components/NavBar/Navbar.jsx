@@ -1,18 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar({ setQuery }) {
   let history = useHistory();
   return (
-    <div className=" flex justify-around items-center  p-1  bg-white shadow-xs w-full ">
-      {/* <div className=" text-lg text-gray-700 hidden md:flex ">
-        <span>Movie X</span>
-      </div> */}
-
-      <div className=" border-gray-800 rounded-lg px-3 py-2 text-gray-400 cursor-pointer hover:bg-gray-800 hover:text-gray-200">
-        <div>
-          <p className="text-md font-medium ml-2 ">Favorites</p>
-        </div>
+    <div className=" flex justify-between items-center  p-1  bg-white shadow-xs w-full mt-8">
+      <div className="bg-green-500 px-4 py-2  text-white  space-x-2 rounded ml-12 ">
+        <NavLink className="text-md font-medium ml-2 " to="/favorites">
+          <button>Favorites</button>
+        </NavLink>
       </div>
 
       <br />
@@ -31,9 +28,10 @@ export default function Navbar({ setQuery }) {
           }}
         />
       </div>
+      
       <br />
 
-      <div className=" border-gray-800 rounded-lg px-3 py-2 text-gray-400 cursor-pointer hover:bg-gray-800 hover:text-gray-200">
+      <div className="bg-red-500 px-4 py-2  text-white  space-x-2 rounded mr-12">
         <div>
           <button
             className="text-md font-medium ml-2 "
