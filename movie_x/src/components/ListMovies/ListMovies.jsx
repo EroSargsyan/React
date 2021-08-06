@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
-import genres from "../GenresAPI/genres";
+import genresArr from "../GenresAPI/genres";
 
-export default function ListMovies({
-  items,
-  baseImgUrl,
-  setFavorites,
-  favorites,
-}) {
+export default function ListMovies({ items, baseImgUrl }) {
+  let username = localStorage.getItem("auth");
+
   return (
     <div className="p-10 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-5">
       {items.map((el) => {
@@ -24,7 +21,7 @@ export default function ListMovies({
               <div className="font-bold text-xl mb-2">{el.original_title}</div>
             </div>
             <div className="px-6 pt-4 pb-2">
-              {genres.map((gen) => {
+              {genresArr.map((gen) => {
                 return el.genre_ids.includes(gen.id) ? (
                   <div key={gen.id}>
                     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -37,11 +34,23 @@ export default function ListMovies({
             <button
               className="p-0 w-12 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
               onClick={() => {
-                if (favorites.includes(el.id)) {
-                  let filtered = [favorites.filter((item) => item !== el.id)];
-                  setFavorites(filtered);
+                if (
+                  localStorage
+                    .getItem(`${username}`)
+                    .split(",")
+                    .includes(String(el.id))
+                ) {
+                  let filtered = localStorage
+                    .getItem(`${username}`)
+                    .split(",")
+                    .filter((filterEl) => filterEl !== String(el.id));
+
+                  localStorage.setItem(`${username}`, [filtered]);
                 } else {
-                  setFavorites((prevState) => [...prevState, el.id]);
+                  localStorage.setItem(`${username}`, [
+                    localStorage.getItem(`${username}`),
+                    el.id,
+                  ]);
                 }
               }}
             >

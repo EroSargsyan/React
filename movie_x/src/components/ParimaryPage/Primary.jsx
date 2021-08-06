@@ -9,10 +9,6 @@ export default function Primary() {
   let [loading, setLoading] = useState(true);
   let [query, setQuery] = useState("");
   const baseImgUrl = "https://image.tmdb.org/t/p/";
-  let username = localStorage.getItem("auth");
-  let [favorites, setFavorites] = useState([
-    localStorage.getItem(`${username}`),
-  ]);
 
   const scrollHandler = (event) => {
     if (
@@ -22,10 +18,6 @@ export default function Primary() {
       setLoading(true);
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem(`${username}`, favorites);
-  }, [favorites, username]);
 
   useEffect(() => {
     if (!query) {
@@ -73,12 +65,7 @@ export default function Primary() {
     <>
       <div>
         <Navbar setQuery={setQuery} />
-        <ListMovies
-          items={items}
-          baseImgUrl={baseImgUrl}
-          setFavorites={setFavorites}
-          favorites={favorites}
-        />
+        <ListMovies items={items} baseImgUrl={baseImgUrl} />
       </div>
     </>
   );
