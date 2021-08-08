@@ -8,7 +8,7 @@ export default function ListMovies({ items, baseImgUrl }) {
   let favoritesArr = localStorage.getItem(`${username}`).split(",").slice(1);
 
   return (
-    <div className="p-10 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-5 ">
+    <div className="p-10 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 ">
       {items.map((el) => {
         return (
           <div
