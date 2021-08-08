@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import genresArr from "../GenresAPI/genres";
+import PropTypes from "prop-types";
 
-export default function ListMovies({ items, baseImgUrl }) {
+ function ListMovies({ items, baseImgUrl }) {
   let username = localStorage.getItem("auth");
   let [plusToggle, setPlusToggle] = useState(true);
   let favoritesArr = localStorage.getItem(`${username}`).split(",").slice(1);
@@ -58,11 +59,7 @@ export default function ListMovies({ items, baseImgUrl }) {
                 setPlusToggle(!plusToggle);
               }}
             >
-              {favoritesArr.includes(String(el.id)) ? (
-               "Remove"
-              ) : (
-              "Add"
-              )}
+              {favoritesArr.includes(String(el.id)) ? "Remove" : "Add"}
             </button>
             <Link to={`/movies/${el.id}`}>
               <button className="p-0 w-16 h-10 bg-blue-300 rounded-md hover:bg-blue-400 font-semibold text-white active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none  ml-5">
@@ -75,3 +72,11 @@ export default function ListMovies({ items, baseImgUrl }) {
     </div>
   );
 }
+
+ListMovies.propTypes = {
+  items: PropTypes.array.isRequired,
+  baseImgUrl: PropTypes.string.isRequired,
+};
+
+
+export default  ListMovies
