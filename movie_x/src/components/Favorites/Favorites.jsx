@@ -6,7 +6,9 @@ import FavNavbar from "../NavBar/FavNavBar";
 export default function Favorites() {
   const baseImgUrl = "https://image.tmdb.org/t/p/";
   let [data, setData] = useState([]);
-  let plusToggle = false;
+  let username = localStorage.getItem("auth");
+  let [plusToggle, setPlusToggle] = useState(true);
+  let favoritesArr = localStorage.getItem(`${username}`).split(",").slice(1);
 
   useEffect(() => {
     const username = localStorage.getItem("auth");
@@ -18,7 +20,6 @@ export default function Favorites() {
       })
         .then((res) => {
           setData((d) => [...d, res.data]);
-          console.log(res.data);
         })
         .catch((err) => {
           console.warn(err);
@@ -58,10 +59,30 @@ export default function Favorites() {
                 })}
               </div>
               <button
-                className="p-0 w-12 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-                onClick={() => {}}
+                className="p-0 w-16 h-10 bg-green-300 rounded-md hover:bg-green-400 font-semibold text-white active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+                onClick={() => {
+                  if (
+                    localStorage
+                      .getItem(`${username}`)
+                      .split(",")
+                      .includes(String(item.id))
+                  ) {
+                    let filtered = localStorage
+                      .getItem(`${username}`)
+                      .split(",")
+                      .filter((filterEl) => filterEl !== String(item.id));
+
+                    localStorage.setItem(`${username}`, [filtered]);
+                  } else {
+                    localStorage.setItem(`${username}`, [
+                      localStorage.getItem(`${username}`),
+                      item.id,
+                    ]);
+                  }
+                  setPlusToggle(!plusToggle);
+                }}
               >
-                {plusToggle ? <span>-</span> : <span>+</span>}
+                {favoritesArr.includes(String(item.id)) ? "Remove" : "Add"}
               </button>
               <Link to={`/movies/${item.id}`}>
                 <button className="p-0 w-16 h-10 bg-blue-300 rounded-md hover:bg-blue-400 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none text-white ml-5">

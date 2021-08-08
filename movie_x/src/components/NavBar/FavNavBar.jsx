@@ -9,7 +9,7 @@ export default function FavNavbar() {
     <div className=" flex justify-between items-center    bg-white shadow-xs w-full ">
       <div className="bg-green-500 px-4 py-2  text-white  space-x-2 rounded  mt-8 ml-12">
         <NavLink className="text-md font-medium ml-2 " to="/movies">
-          <button>Go back</button>
+          <button>Go to Movies</button>
         </NavLink>
       </div>
       <br />
