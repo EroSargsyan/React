@@ -42,17 +42,17 @@ export default function Details() {
                   className="w-full relative z-10 mb-8"
                   alt="company_name"
                 />
-                <span className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-md px-10 py-2 font-semibold">
+                <span className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-md px-10 py-2 font-semibold m-2 ">
                   Released: {movie.release_date}
                 </span>
-                <button className="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded ml-4 ">
+                <button className="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded m-2 ">
                   <span>{movie.original_language}</span>
                 </button>
-                <button className="bg-blue-300 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded mt-2 ml-2">
+                <button className="bg-blue-300 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded  m-2">
                   <span>Rating {movie.vote_average}</span>
                 </button>
                 <button
-                  className="p-0 w-16 h-10 bg-green-300 rounded-md hover:bg-green-400 font-semibold text-white  active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none justify-self-end ml-2"
+                  className="p-0 w-16 h-10 bg-green-300 rounded-md hover:bg-green-400 font-semibold text-white  active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none justify-self-end m-2"
                   onClick={() => {
                     if (
                       localStorage
