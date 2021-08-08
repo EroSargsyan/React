@@ -26,7 +26,10 @@ export default function DetailsNavbar() {
                 </NavLink>
               </li>
               <li>
-                <NavLink className="text-md font-medium ml-2  px-4 py-2  text-green-500  space-x-2 inline-block no-underline hover:text-green-700 text-lg  lg:-ml-2" to="/favorites">
+                <NavLink
+                  className="text-md font-medium ml-2  px-4 py-2  text-green-500  space-x-2 inline-block no-underline hover:text-green-700 text-lg  lg:-ml-2"
+                  to="/favorites"
+                >
                   Favorites
                 </NavLink>
               </li>
@@ -52,35 +55,5 @@ export default function DetailsNavbar() {
         </div>
       </div>
     </div>
-
-    // <div className=" flex justify-between items-center    bg-white shadow-xs w-full ">
-    //   <div className="bg-green-500 px-4 py-2  text-white  space-x-2 rounded  mt-8">
-    //     <NavLink className="text-md font-medium ml-2 " to="/movies">
-    //       <button>Go to Movies</button>
-    //     </NavLink>
-    //   </div>
-
-    //   <br />
-
-    //   <div className="bg-green-500 px-4 py-2  text-white  space-x-2 rounded  mt-8">
-    //     <NavLink className="text-md font-medium ml-2 " to="/favorites">
-    //       <button>Go to Favorites</button>
-    //     </NavLink>
-    //   </div>
-
-    //   <br />
-
-    //   <div>
-    //     <button
-    //       className="bg-red-500 px-4 py-2  text-white  space-x-2 rounded mt-8"
-    //       onClick={() => {
-    //         localStorage.removeItem("auth");
-    //         history.push("/");
-    //       }}
-    //     >
-    //       Log out
-    //     </button>
-    //   </div>
-    // </div>
   );
 }
