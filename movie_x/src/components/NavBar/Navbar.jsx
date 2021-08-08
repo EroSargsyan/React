@@ -1,8 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function Navbar({ setQuery }) {
+function Navbar({ setQuery }) {
   let history = useHistory();
   return (
     <div
@@ -63,3 +64,9 @@ export default function Navbar({ setQuery }) {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  setQuery: PropTypes.func.isRequired,
+};
+
+export default Navbar;
