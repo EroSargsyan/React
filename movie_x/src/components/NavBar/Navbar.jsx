@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 function Navbar({ setQuery }) {
   let history = useHistory();
+  
   return (
     <div
       id="header"

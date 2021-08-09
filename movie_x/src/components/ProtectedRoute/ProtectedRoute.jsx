@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import Primary from "../ParimaryPage/Primary";
+import Primary from "../PrimaryPage/Primary";
 
 export default function ProtectedRoute() {
   return (

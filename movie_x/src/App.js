@@ -4,11 +4,9 @@ import Routing from "./components/Router/Routing";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routing />
-      </Router>
-    </>
+    <Router>
+      <Routing />
+    </Router>
   );
 }
 

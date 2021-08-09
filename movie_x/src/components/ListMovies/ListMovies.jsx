@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import genresArr from "../GenresAPI/genres";
 import PropTypes from "prop-types";
+import genresArr from "../GenresAPI/genres";
 
  function ListMovies({ items, baseImgUrl }) {
   let username = localStorage.getItem("auth");

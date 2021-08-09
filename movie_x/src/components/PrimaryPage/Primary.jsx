@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../NavBar/Navbar";
 import axios from "axios";
+import Navbar from "../NavBar/Navbar";
 import ListMovies from "../ListMovies/ListMovies";
 
 export default function Primary() {
@@ -62,11 +62,9 @@ export default function Primary() {
   }, [loading]);
 
   return (
-    <>
-      <div>
-        <Navbar setQuery={setQuery} />
-        <ListMovies items={items} baseImgUrl={baseImgUrl} />
-      </div>
-    </>
+    <div>
+      <Navbar setQuery={setQuery} />
+      <ListMovies items={items} baseImgUrl={baseImgUrl} />
+    </div>
   );
 }
